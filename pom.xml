@@ -22,9 +22,13 @@
 
   <groupId>org.rhq.checkstyle</groupId>
   <artifactId>rhq-checkstyle-config</artifactId>
-  <name>RHQ: Checkstyle Configuration</name>
   <version>1.0.0.Final-SNAPSHOT</version>
 
+  <name>RHQ: Checkstyle Configuration</name>
+  <organization>
+    <name>Red Hat, Inc.</name>
+    <url>http://redhat.com/</url>
+  </organization>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -32,5 +36,36 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
     </license>
   </licenses>
+
+  <mailingLists>
+    <mailingList>
+      <name>RHQ Developer List</name>
+      <subscribe>https://lists.fedorahosted.org/mailman/listinfo/rhq-devel</subscribe>
+      <unsubscribe>https://lists.fedorahosted.org/mailman/listinfo/rhq-devel</unsubscribe>
+      <archive>https://lists.fedorahosted.org/pipermail/rhq-devel/</archive>
+    </mailingList>
+  </mailingLists>
+
+  <scm>
+    <connection>scm:git:ssh://github.com/rhq-project/rhq-checkstyle-config</connection>
+    <developerConnection>scm:git:ssh://github.com/rhq-project/rhq-checkstyle-config</developerConnection>
+    <url>https://github.com/rhq-project/rhq-checkstyle-config</url>
+  </scm>
+  <issueManagement>
+    <url>https://github.com/rhq-project/rhq-checkstyle-config/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+  <distributionManagement>
+    <repository>
+      <id>jboss-releases-repository</id>
+      <name>JBoss Releases Repository</name>
+      <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>jboss-snapshots-repository</id>
+      <name>JBoss Snapshots Repository</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 </project>
