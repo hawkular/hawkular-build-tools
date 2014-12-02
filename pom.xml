@@ -47,9 +47,10 @@
   </mailingLists>
 
   <scm>
-    <connection>scm:git:ssh://github.com/rhq-project/rhq-checkstyle-config</connection>
-    <developerConnection>scm:git:ssh://github.com/rhq-project/rhq-checkstyle-config</developerConnection>
+    <connection>scm:git:git://github.com/rhq-project/rhq-checkstyle-config.git</connection>
+    <developerConnection>scm:git:ssh://github.com/rhq-project/rhq-checkstyle-config.git</developerConnection>
     <url>https://github.com/rhq-project/rhq-checkstyle-config</url>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <url>https://github.com/rhq-project/rhq-checkstyle-config/issues</url>
