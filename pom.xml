@@ -25,6 +25,8 @@
   <version>1-SNAPSHOT</version>
 
   <name>RHQ: Checkstyle Configuration</name>
+  <description>Checkstyle configuration for RHQ.next projects</description>
+  <url>https://github.com/rhq-project/rhq-checkstyle-config</url>
   <organization>
     <name>Red Hat, Inc.</name>
     <url>http://redhat.com/</url>
@@ -36,6 +38,14 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
     </license>
   </licenses>
+
+  <developers>
+    <developer>
+      <id>ppalaga</id>
+      <name>Peter Palaga</name>
+      <timezone>Europe/Prague</timezone>
+    </developer>
+  </developers>
 
   <mailingLists>
     <mailingList>
