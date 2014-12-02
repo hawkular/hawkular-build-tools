@@ -21,7 +21,7 @@
 
   <groupId>org.rhq.checkstyle</groupId>
   <artifactId>rhq-checkstyle-config</artifactId>
-  <version>1</version>
+  <version>2-SNAPSHOT</version>
 
   <name>RHQ: Checkstyle Configuration</name>
   <organization>
@@ -49,7 +49,7 @@
     <connection>scm:git:git://github.com/rhq-project/rhq-checkstyle-config.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/rhq-project/rhq-checkstyle-config.git</developerConnection>
     <url>https://github.com/rhq-project/rhq-checkstyle-config</url>
-    <tag>v1</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <url>https://github.com/rhq-project/rhq-checkstyle-config/issues</url>
