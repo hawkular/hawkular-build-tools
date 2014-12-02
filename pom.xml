@@ -22,7 +22,7 @@
 
   <groupId>org.rhq.checkstyle</groupId>
   <artifactId>rhq-checkstyle-config</artifactId>
-  <version>1.0.0.Final-SNAPSHOT</version>
+  <version>1-SNAPSHOT</version>
 
   <name>RHQ: Checkstyle Configuration</name>
   <organization>
