@@ -78,6 +78,26 @@
     </snapshotRepository>
   </distributionManagement>
 
+  <properties>
+    <checkstyle.version>6.1.1</checkstyle.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+       <groupId>com.puppycrawl.tools</groupId>
+       <artifactId>checkstyle</artifactId>
+       <version>${checkstyle.version}</version>
+    </dependency>
+
+    <!-- test scope stuff -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
