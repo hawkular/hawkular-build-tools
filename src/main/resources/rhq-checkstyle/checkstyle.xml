@@ -69,6 +69,10 @@
     <module name="CovariantEquals" />
     <module name="ArrayTypeStyle" />
 
+    <module name="LineLength">
+      <property name="max" value="120" />
+    </module>
+
   </module>
 
 </module>
