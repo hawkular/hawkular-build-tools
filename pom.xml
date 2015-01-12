@@ -19,13 +19,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.rhq.checkstyle</groupId>
-  <artifactId>rhq-checkstyle-config</artifactId>
+  <groupId>org.hawkular</groupId>
+  <artifactId>hawkular-build-tools</artifactId>
   <version>4-SNAPSHOT</version>
 
-  <name>RHQ: Checkstyle Configuration</name>
-  <description>Checkstyle configuration for RHQ.next projects</description>
-  <url>https://github.com/rhq-project/rhq-checkstyle-config</url>
+  <name>Hawkular Build Tools</name>
+  <description>Contains the Checkstyle configuration for Hawkular projects</description>
+  <url>https://github.com/hawkular/hawkular-build-tools</url>
   <organization>
     <name>Red Hat, Inc.</name>
     <url>http://redhat.com/</url>
@@ -48,22 +48,22 @@
 
   <mailingLists>
     <mailingList>
-      <name>RHQ Developer List</name>
-      <subscribe>https://lists.fedorahosted.org/mailman/listinfo/rhq-devel</subscribe>
-      <unsubscribe>https://lists.fedorahosted.org/mailman/listinfo/rhq-devel</unsubscribe>
-      <archive>https://lists.fedorahosted.org/pipermail/rhq-devel/</archive>
+      <name>Hawkular Developer List</name>
+      <subscribe>https://lists.jboss.org/mailman/listinfo/hawkular-dev</subscribe>
+      <unsubscribe>https://lists.jboss.org/mailman/listinfo/hawkular-dev</unsubscribe>
+      <archive>http://lists.jboss.org/pipermail/hawkular-dev</archive>
     </mailingList>
   </mailingLists>
 
   <scm>
-    <connection>scm:git:git://github.com/rhq-project/rhq-checkstyle-config.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/rhq-project/rhq-checkstyle-config.git</developerConnection>
-    <url>https://github.com/rhq-project/rhq-checkstyle-config</url>
+    <connection>scm:git:git://github.com/hawkular/hawkular-build-tools.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/hawkular/hawkular-build-tools.git</developerConnection>
+    <url>https://github.com/hawkular/hawkular-build-tools</url>
     <tag>HEAD</tag>
   </scm>
   <issueManagement>
-    <url>https://github.com/rhq-project/rhq-checkstyle-config/issues</url>
-    <system>GitHub Issues</system>
+    <url>https://issues.jboss.org/browse/HAWKULAR</url>
+    <system>jira</system>
   </issueManagement>
   <distributionManagement>
     <repository>
@@ -105,7 +105,7 @@
         <artifactId>maven-release-plugin</artifactId>
         <version>2.5.1</version>
         <configuration>
-          <tagNameFormat>v@{project.version}</tagNameFormat>
+          <tagNameFormat>@{project.version}</tagNameFormat>
           <preparationGoals>package</preparationGoals>
           <goals>deploy</goals>
         </configuration>

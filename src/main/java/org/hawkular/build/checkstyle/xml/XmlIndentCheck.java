@@ -1,4 +1,4 @@
-package org.rhq.checkstyle.xml;
+package org.hawkular.build.checkstyle.xml;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -18,7 +18,7 @@
     <property name="message" value="Line has trailing spaces." />
   </module>
 
-  <module name="org.rhq.checkstyle.xml.XmlIndentCheck">
+  <module name="org.hawkular.build.checkstyle.xml.XmlIndentCheck">
     <property name="indentSize" value="2" />
   </module>
 

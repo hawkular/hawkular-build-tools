@@ -1,0 +1,5 @@
+= Hawkular Build Tools
+
+Contains resources used during the build of other Hawkular projects:
+
+* Configuration for Checkstyle in `src/main/resources/hawkular-checkstyle` directory

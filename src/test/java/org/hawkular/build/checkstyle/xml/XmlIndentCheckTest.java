@@ -1,4 +1,4 @@
-package org.rhq.checkstyle.xml;
+package org.hawkular.build.checkstyle.xml;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Locale;
 
+import org.hawkular.build.checkstyle.xml.XmlIndentCheck;
 import org.junit.Before;
 import org.junit.Test;
 
