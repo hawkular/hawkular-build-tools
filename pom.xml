@@ -79,14 +79,14 @@
   </distributionManagement>
 
   <properties>
-    <checkstyle.version>6.1.1</checkstyle.version>
+    <version.com.puppycrawl.tools.checkstyle>6.1.1</version.com.puppycrawl.tools.checkstyle>
   </properties>
 
   <dependencies>
     <dependency>
        <groupId>com.puppycrawl.tools</groupId>
        <artifactId>checkstyle</artifactId>
-       <version>${checkstyle.version}</version>
+       <version>${version.com.puppycrawl.tools.checkstyle}</version>
     </dependency>
 
     <!-- test scope stuff -->
