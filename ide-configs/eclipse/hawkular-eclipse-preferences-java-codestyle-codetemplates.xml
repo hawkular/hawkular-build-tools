@@ -19,7 +19,7 @@
  * ${tags}
  * ${see_to_target}
  */</template><template autoinsert="false" context="newtype_context" deleted="false" description="Newly created files" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.newtype" name="newtype">/*
- * Copyright 2014 - 2015 Red Hat, Inc. and/or its affiliates
+ * Copyright 2014 - ${year} Red Hat, Inc. and/or its affiliates
  * and other contributors as indicated by the @author tags.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
