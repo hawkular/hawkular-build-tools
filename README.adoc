@@ -2,6 +2,10 @@
 
 Contains resources used during the build of other Hawkular projects:
 
-* The configuration for Checkstyle in `src/main/resources/hawkular-checkstyle` directory
+* The configuration for Checkstyle in `src/main/resources/hawkular-checkstyle` directory.
+* `org.hawkular.build.checkstyle.xml.XmlIndentCheck` - an extension for Checkstyle to enforce indentation in XML files.
 * A license header template to be used by com.mycila:license-maven-plugin in
-  `src/main/resources/hawkular-license/jboss-apache-2-template.txt`
+  `src/main/resources/hawkular-license/jboss-apache-2-template.txt`.
+* `org.hawkular.build.license.CopyrightRangeProvider` - an extension of license-maven-plugin to set copyright years
+   range based on git history.
+
