@@ -81,6 +81,9 @@
   </distributionManagement>
 
   <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+
     <version.com.puppycrawl.tools.checkstyle>6.1.1</version.com.puppycrawl.tools.checkstyle>
     <version.com.mycila.license-maven-plugin>2.7</version.com.mycila.license-maven-plugin>
     <version.org.eclipse.jgit>3.6.1.201501031845-r</version.org.eclipse.jgit>
