@@ -8,4 +8,8 @@ Contains resources used during the build of other Hawkular projects:
   `src/main/resources/hawkular-license/jboss-apache-2-template.txt`.
 * `org.hawkular.build.license.CopyrightRangeProvider` - an extension of license-maven-plugin to set copyright years
    range based on git history.
-
+* IDE configuration files - import these in your IDE so your IDE can format files according to Hawkular style rules.
+** `ide-configs/eclipse` - Eclipse preferences for code style. The names of the files
+                        in here indicates where you should import these files.
+                        e.g, hawkular-eclipse-preferences-java-codestyle-cleanup.xml
+                        should be imported in Preferences > Java > Code Style > Cleanup.
