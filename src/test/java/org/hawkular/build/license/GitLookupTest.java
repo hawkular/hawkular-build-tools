@@ -26,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -115,6 +116,29 @@ public class GitLookupTest {
     public void moved() throws NoHeadException, GitAPIException, IOException {
         assertLastChange(newAuthorLookup(), "dir1/file3.txt", "2009");
         assertLastChange(newCommitterLookup(), "dir1/file3.txt", "2010");
+    }
+
+    @Test
+    public void newUnstaged() throws NoHeadException, GitAPIException, IOException {
+        String currentYear = getCurrentGmtYear();
+        assertLastChange(newAuthorLookup(), "dir1/file5.txt", currentYear);
+        assertLastChange(newCommitterLookup(), "dir1/file5.txt", currentYear);
+    }
+
+    @Test
+    public void newStaged() throws NoHeadException, GitAPIException, IOException {
+        String currentYear = getCurrentGmtYear();
+        assertLastChange(newAuthorLookup(), "dir1/file6.txt", currentYear);
+        assertLastChange(newCommitterLookup(), "dir1/file6.txt", currentYear);
+    }
+
+    /**
+     * @return
+     */
+    private String getCurrentGmtYear() {
+        Calendar result = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        result.setTimeInMillis(System.currentTimeMillis());
+        return String.valueOf(result.get(Calendar.YEAR));
     }
 
     @Test
