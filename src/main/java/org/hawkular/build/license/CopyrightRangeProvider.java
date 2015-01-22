@@ -25,8 +25,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TimeZone;
 
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.NoHeadException;
 import org.hawkular.build.license.GitLookup.DateSource;
 
 import com.mycila.maven.plugin.license.AbstractLicenseMojo;
@@ -95,13 +93,7 @@ public class CopyrightRangeProvider implements PropertiesProvider {
             }
             result.put(COPYRIGHT_YEARS_KEY, copyrightYears);
             return Collections.unmodifiableMap(result);
-        } catch (NoHeadException e) {
-            throw new RuntimeException("Could not compute the year of the last git commit for file "
-                    + document.getFile().getAbsolutePath(), e);
-        } catch (GitAPIException e) {
-            throw new RuntimeException("Could not compute the year of the last git commit for file "
-                    + document.getFile().getAbsolutePath(), e);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Could not compute the year of the last git commit for file "
                     + document.getFile().getAbsolutePath(), e);
         }
