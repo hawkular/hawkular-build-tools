@@ -106,13 +106,13 @@ public class GitLookup {
      * @throws GitAPIException
      * @throws IOException
      */
-    public String getYearOfLastChange(File file) throws NoHeadException, GitAPIException, IOException {
+    public int getYearOfLastChange(File file) throws NoHeadException, GitAPIException, IOException {
         String repoRelativePath = pathResolver.relativize(file);
 
         Status status = new Git(repository).status().addPath(repoRelativePath).call();
         if (!status.isClean()) {
             /* Return the current year for modified and unstaged files */
-            return Integer.toString(toYear(System.currentTimeMillis(), timeZone != null ? timeZone : DEFAULT_ZONE));
+            return toYear(System.currentTimeMillis(), timeZone != null ? timeZone : DEFAULT_ZONE);
         }
 
         RevWalk walk = new RevWalk(repository);
@@ -142,7 +142,7 @@ public class GitLookup {
             }
         }
         walk.dispose();
-        return Integer.toString(commitYear);
+        return commitYear;
     }
 
     private static int toYear(long epochMilliseconds, TimeZone timeZone) {

@@ -76,12 +76,19 @@ public class CopyrightRangeProvider implements PropertiesProvider {
             throw new RuntimeException("'project.inceptionYear' must have a value for file "
                     + document.getFile().getAbsolutePath());
         }
+        final int inceptionYearInt;
+        try {
+            inceptionYearInt = Integer.parseInt(inceptionYear);
+        } catch (NumberFormatException e1) {
+            throw new RuntimeException("'project.inceptionYear' must be an integer ; found = " + inceptionYear +" file: "
+                    + document.getFile().getAbsolutePath());
+        }
         try {
             Map<String, String> result = new HashMap<String, String>(3);
-            String copyrightEnd = getGitLookup(document.getFile(), properties).getYearOfLastChange(document.getFile());
-            result.put(COPYRIGHT_LAST_YEAR_KEY, copyrightEnd);
+            int copyrightEnd = getGitLookup(document.getFile(), properties).getYearOfLastChange(document.getFile());
+            result.put(COPYRIGHT_LAST_YEAR_KEY, Integer.toString(copyrightEnd));
             final String copyrightYears;
-            if (inceptionYear.equals(copyrightEnd)) {
+            if (inceptionYearInt >= copyrightEnd) {
                 copyrightYears = inceptionYear;
             } else {
                 copyrightYears = inceptionYear + "-" + copyrightEnd;
