@@ -74,6 +74,9 @@ public class GitLookup {
     public GitLookup(File anyFile, DateSource dateSource, TimeZone timeZone, int checkCommitsCount) throws IOException {
         super();
         this.repository = new FileRepositoryBuilder().findGitDir(anyFile).build();
+        /* A workaround for  https://bugs.eclipse.org/bugs/show_bug.cgi?id=457961 */
+        this.repository.getObjectDatabase().newReader().getShallowCommits();
+
         this.pathResolver = new GitPathResolver(repository.getWorkTree().getAbsolutePath());
         this.dateSource = dateSource;
         switch (dateSource) {
