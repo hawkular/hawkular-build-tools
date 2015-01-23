@@ -26,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -101,28 +102,51 @@ public class GitLookupTest {
 
     @Test
     public void modified() throws NoHeadException, GitAPIException, IOException {
-        assertLastChange(newAuthorLookup(), "dir1/file1.txt", "2006");
-        assertLastChange(newCommitterLookup(), "dir1/file1.txt", "2006");
+        assertLastChange(newAuthorLookup(), "dir1/file1.txt", 2006);
+        assertLastChange(newCommitterLookup(), "dir1/file1.txt", 2006);
     }
 
     @Test
     public void justCreated() throws NoHeadException, GitAPIException, IOException {
-        assertLastChange(newAuthorLookup(), "dir2/file2.txt", "2007");
-        assertLastChange(newCommitterLookup(), "dir2/file2.txt", "2007");
+        assertLastChange(newAuthorLookup(), "dir2/file2.txt", 2007);
+        assertLastChange(newCommitterLookup(), "dir2/file2.txt", 2007);
     }
 
     @Test
     public void moved() throws NoHeadException, GitAPIException, IOException {
-        assertLastChange(newAuthorLookup(), "dir1/file3.txt", "2009");
-        assertLastChange(newCommitterLookup(), "dir1/file3.txt", "2010");
+        assertLastChange(newAuthorLookup(), "dir1/file3.txt", 2009);
+        assertLastChange(newCommitterLookup(), "dir1/file3.txt", 2010);
+    }
+
+    @Test
+    public void newUnstaged() throws NoHeadException, GitAPIException, IOException {
+        int currentYear = getCurrentGmtYear();
+        assertLastChange(newAuthorLookup(), "dir1/file5.txt", currentYear);
+        assertLastChange(newCommitterLookup(), "dir1/file5.txt", currentYear);
+    }
+
+    @Test
+    public void newStaged() throws NoHeadException, GitAPIException, IOException {
+        int currentYear = getCurrentGmtYear();
+        assertLastChange(newAuthorLookup(), "dir1/file6.txt", currentYear);
+        assertLastChange(newCommitterLookup(), "dir1/file6.txt", currentYear);
+    }
+
+    /**
+     * @return
+     */
+    private int getCurrentGmtYear() {
+        Calendar result = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        result.setTimeInMillis(System.currentTimeMillis());
+        return result.get(Calendar.YEAR);
     }
 
     @Test
     public void reuseProvider() throws NoHeadException, GitAPIException, IOException {
         GitLookup provider = newAuthorLookup();
-        assertLastChange(provider, "dir1/file1.txt", "2006");
-        assertLastChange(provider, "dir2/file2.txt", "2007");
-        assertLastChange(provider, "dir1/file3.txt", "2009");
+        assertLastChange(provider, "dir1/file1.txt", 2006);
+        assertLastChange(provider, "dir2/file2.txt", 2007);
+        assertLastChange(provider, "dir1/file3.txt", 2009);
     }
 
     @Test
@@ -140,18 +164,18 @@ public class GitLookupTest {
 
         /* null is GMT */
         GitLookup nullTzLookup = new GitLookup(gitRepoRoot, DateSource.COMMITER, null, 10);
-        assertLastChange(nullTzLookup, "dir1/file3.txt", "2010");
+        assertLastChange(nullTzLookup, "dir1/file3.txt", 2010);
 
         /* explicit GMT */
         GitLookup gmtLookup = new GitLookup(gitRepoRoot, DateSource.COMMITER, TimeZone.getTimeZone("GMT"), 10);
-        assertLastChange(gmtLookup, "dir1/file3.txt", "2010");
+        assertLastChange(gmtLookup, "dir1/file3.txt", 2010);
 
         /*
          * explicit non-GMT zome. Note that the relevant commit's (GMT) time stamp is 2010-12-31T23:30:00 which yealds
          * 2011 in the CET (+01:00) time zone
          */
         GitLookup cetLookup = new GitLookup(gitRepoRoot, DateSource.COMMITER, TimeZone.getTimeZone("CET"), 10);
-        assertLastChange(cetLookup, "dir1/file3.txt", "2011");
+        assertLastChange(cetLookup, "dir1/file3.txt", 2011);
 
     }
 
@@ -163,9 +187,9 @@ public class GitLookupTest {
         return new GitLookup(gitRepoRoot, DateSource.COMMITER, null, 10);
     }
 
-    private void assertLastChange(GitLookup provider, String relativePath, String expected) throws NoHeadException,
+    private void assertLastChange(GitLookup provider, String relativePath, int expected) throws NoHeadException,
             GitAPIException, IOException {
-        String actual = provider.getYearOfLastChange(new File(gitRepoRoot.getAbsolutePath() + File.separatorChar
+        int actual = provider.getYearOfLastChange(new File(gitRepoRoot.getAbsolutePath() + File.separatorChar
                 + relativePath.replace('/', File.separatorChar)));
         assertEquals(expected, actual);
     }

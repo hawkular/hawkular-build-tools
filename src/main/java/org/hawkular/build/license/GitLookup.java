@@ -22,6 +22,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.lib.Constants;
@@ -72,6 +74,9 @@ public class GitLookup {
     public GitLookup(File anyFile, DateSource dateSource, TimeZone timeZone, int checkCommitsCount) throws IOException {
         super();
         this.repository = new FileRepositoryBuilder().findGitDir(anyFile).build();
+        /* A workaround for  https://bugs.eclipse.org/bugs/show_bug.cgi?id=457961 */
+        this.repository.getObjectDatabase().newReader().getShallowCommits();
+
         this.pathResolver = new GitPathResolver(repository.getWorkTree().getAbsolutePath());
         this.dateSource = dateSource;
         switch (dateSource) {
@@ -104,9 +109,16 @@ public class GitLookup {
      * @throws GitAPIException
      * @throws IOException
      */
-    public String getYearOfLastChange(File file) throws NoHeadException, GitAPIException, IOException {
-        RevWalk walk = new RevWalk(repository);
+    public int getYearOfLastChange(File file) throws NoHeadException, GitAPIException, IOException {
         String repoRelativePath = pathResolver.relativize(file);
+
+        Status status = new Git(repository).status().addPath(repoRelativePath).call();
+        if (!status.isClean()) {
+            /* Return the current year for modified and unstaged files */
+            return toYear(System.currentTimeMillis(), timeZone != null ? timeZone : DEFAULT_ZONE);
+        }
+
+        RevWalk walk = new RevWalk(repository);
         walk.markStart(walk.parseCommit(repository.resolve(Constants.HEAD)));
         walk.setTreeFilter(AndTreeFilter.create(PathFilter.create(repoRelativePath), TreeFilter.ANY_DIFF));
         walk.setRevFilter(MaxCountRevFilter.create(checkCommitsCount));
@@ -133,7 +145,7 @@ public class GitLookup {
             }
         }
         walk.dispose();
-        return Integer.toString(commitYear);
+        return commitYear;
     }
 
     private static int toYear(long epochMilliseconds, TimeZone timeZone) {

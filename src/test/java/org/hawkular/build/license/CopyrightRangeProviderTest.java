@@ -49,11 +49,22 @@ public class CopyrightRangeProviderTest {
         assertRange(provider, "dir1/file3.txt", "2009", "1999-2009");
         assertRange(provider, "dir2/file4.txt", "1999", "1999");
 
+        /* The last change of file4.txt in git history is in 1999
+         * but the inception year is 2000
+         * and we do not want the range to go back (2000-1999)
+         * so in this case we expect just 2000 */
+        assertRange(provider, "dir2/file4.txt", "2000", "1999", "2000");
+
     }
 
     private static void assertRange(CopyrightRangeProvider provider, String path, String copyrightEnd, String copyrightRange) {
+        assertRange(provider, path, "1999", copyrightEnd, copyrightRange);
+    }
+
+    private static void assertRange(CopyrightRangeProvider provider, String path, String inceptionYear,
+            String copyrightEnd, String copyrightRange) {
         Properties props = new Properties();
-        props.put(CopyrightRangeProvider.INCEPTION_YEAR_KEY, "1999");
+        props.put(CopyrightRangeProvider.INCEPTION_YEAR_KEY, inceptionYear);
 
         Document document = newDocument(path);
         Map<String, String> actual = provider.getAdditionalProperties(null, props, document);
@@ -61,7 +72,7 @@ public class CopyrightRangeProviderTest {
         HashMap<String, String> expected = new HashMap<String, String>();
         expected.put(CopyrightRangeProvider.COPYRIGHT_LAST_YEAR_KEY, copyrightEnd);
         expected.put(CopyrightRangeProvider.COPYRIGHT_YEARS_KEY, copyrightRange);
-        Assert.assertEquals("for file '"+ path +"': ", expected, actual);
+        Assert.assertEquals("for file '" + path + "': ", expected, actual);
 
     }
 
