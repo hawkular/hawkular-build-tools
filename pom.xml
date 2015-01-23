@@ -23,7 +23,7 @@
 
   <groupId>org.hawkular</groupId>
   <artifactId>hawkular-build-tools</artifactId>
-  <version>5</version>
+  <version>6-SNAPSHOT</version>
 
   <name>Hawkular Build Tools</name>
   <description>Contains the Checkstyle configuration for Hawkular projects</description>
@@ -61,7 +61,7 @@
     <connection>scm:git:git://github.com/hawkular/hawkular-build-tools.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/hawkular/hawkular-build-tools.git</developerConnection>
     <url>https://github.com/hawkular/hawkular-build-tools</url>
-    <tag>5</tag>
+    <tag>HEAD</tag>
   </scm>
   <issueManagement>
     <url>https://issues.jboss.org/browse/HAWKULAR</url>
