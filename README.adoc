@@ -1,5 +1,10 @@
 = Hawkular Build Tools
 
+ifdef::env-github[]
+[link=https://travis-ci.org/hawkular/hawkular]
+image:https://travis-ci.org/hawkular/hawkular.svg["Build Status", link="https://travis-ci.org/hawkular/hawkular"]
+endif::[]
+
 Contains resources used during the build of other Hawkular projects:
 
 * The configuration for Checkstyle in `src/main/resources/hawkular-checkstyle` directory.
