@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<additionalHeaders>
+  <triple_slash_style>
+    <firstLine>///</firstLine>
+    <beforeEachLine>/// </beforeEachLine>
+    <endLine>///EOL</endLine>
+    <!-- <afterEachLine></afterEachLine> -->
+    <!--skipLine></skipLine -->
+    <firstLineDetectionPattern>///.*$</firstLineDetectionPattern>
+    <lastLineDetectionPattern>///.*$</lastLineDetectionPattern>
+    <allowBlankLines>false</allowBlankLines>
+    <isMultiline>false</isMultiline>
+    <padLines>false</padLines>
+  </triple_slash_style>
+</additionalHeaders>
