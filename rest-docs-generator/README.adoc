@@ -1,0 +1,61 @@
+= REST-docs-generator
+
+This package contains an annotation processor that
+
+== Simple setup
+
+To use the processor without any additional configuration, it is enough to add the following dependency on your maven
+ project:
+
+[source,xml]
+----
+    <dependency>
+      <groupId>org.hawkular.helpers</groupId>
+      <artifactId>rest-docs-generator</artifactId>
+      <version>1.0.0</version>  <!--1-->
+      <scope>provided</scope>
+    </dependency>
+----
+<1> You may check for the latest version
+
+Maven compiler plugin will see this and add it to the Java compiler classpath, which in turn will through
+the embedded service provider file enable the processor.
+
+== Parametrized setup
+
+In many cases the above simple setup is enough. If you want or need to parametrize the processor, you can
+do that via configuring the maven-processor-plugin like this:
+
+[source,xml,noindent]
+----
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessors>
+            <annotationProcessor>org.hawkular.helpers.rest_docs_generator.Processor</annotationProcessor>
+          </annotationProcessors>
+          <compilerArguments>
+            <AtargetDirectory>${project.build.directory}/docs/</AtargetDirectory> <!--1-->
+            <AmodelPkg>org.rhq.helpers.rest_docs_generator.test</AmodelPkg>   <!--2-->
+            <Averbose>false</Averbose>  <!--3-->
+            <AskipPkg/> <!--4-->
+            <AoutputFormat>xml,adoc</AoutputFormat> <!--5-->
+            <AheaderLine>Rest-Api for Hawkular rest processor</AheaderLine> <!--6-->
+            <AabortPattern>_$logger</AabortPattern> <!--7-->
+          </compilerArguments>
+        </configuration>
+      </plugin>
+----
+<1> Target direction for the generated documentation files. Default is `target/docs`.
+<2> Package in which the Api / DTO classes are. Used to shorten Fully Qualified Names.
+<3> Should be processor be noisy?
+<4> Skip processing of classes in this java package
+<5> What output formats should be written? Currently supported is adoc
+<6> A header line for the file header
+<7> A pattern for `String.contains()` that if found in class names aborts the processing. This can be used in
+situations where another processor is writing data to a `generated-sources` directory, that will be processed
+separately after the first round. Without skipping, the processing of the `generated-sources` would overwrite the
+data from the first run that did all the annotation processing already.
+
+
+Of course you still need above dependency section even with the parametrized setup.
