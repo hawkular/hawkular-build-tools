@@ -14,16 +14,23 @@
  * limitations under the License.
  *
  */
-package org.hawkular.helpers.rest_docs_generator.model;
+package org.hawkular.apt.restdocs.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * A property of a Data class
+ * Representation of a Data class - that is one that is
+ * used as complex type of data to be transferred - most
+ * often in the body of a REST-Request
  *
  * @author Heiko W. Rupp
  */
-public class PProperty {
+public class PData {
     public String name;
+    public String nameId;
+    public String shortDescription;
     public String description;
-    public String type;
-    public String notes;
+    public String objectName;
+    public List<PProperty> properties = new ArrayList<>();
 }

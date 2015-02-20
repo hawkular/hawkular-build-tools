@@ -17,36 +17,29 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-package org.hawkular.helpers.rest_docs_generator.test;
+package org.hawkular.apt.restdocs.test;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
-
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+
+import com.wordnik.swagger.annotations.ApiError;
+import com.wordnik.swagger.annotations.ApiParam;
 
 /**
- * // TODO: Document this
+ * Just an example class
+ *
  * @author Heiko W. Rupp
  */
-@Api(value="My Foobar api", description = "This api does foo and bar and baz and is uber cool")
-@Path("/foo")
-public interface MyBean {
+@Path("bla")
+public interface SecondOne {
 
-    @GET
-    @Path("/one")
-    @ApiOperation("This is the first method")
-    public String methodOne();
-
+    @Path("bla/{id}")
     @PUT
-    @Path("/two/{pp}")
-    @ApiOperation("This is the second method")
-    public void methodTwo(
-            @ApiParam(value="The customer id") @PathParam("pp") @DefaultValue("42") int pp,
-            @ApiParam(value="Hulla",required = false) @QueryParam("qp") String qp);
+    @ApiError(code = 404, reason = "Resource with the passed key not found")
+    public Response putSomeData(
+            @ApiParam("The primary key") @PathParam("id") int id,
+            @ApiParam("The data to put") FooBean bean);
+
 }

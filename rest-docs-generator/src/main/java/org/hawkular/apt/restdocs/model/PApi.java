@@ -14,40 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hawkular.helpers.rest_docs_generator.model;
+package org.hawkular.apt.restdocs.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Representation of a Method
+ * Top level API element
  *
  * @author Heiko W. Rupp
  */
-public class PMethod {
+public class PApi {
 
-    public String method;
+    public List<PClass> classes = new ArrayList<>();
     public String name;
-    public String description;
-    public PTypeInfo returnType;
-    public String notes;
-    public List<ErrorCode> errors = new ArrayList<>();
-    public List<PParam> params = new ArrayList<>();
-    public String path;
-    public boolean gzip = false;
+    public List<PData> data = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "PMethod{" +
-                "method='" + method + '\'' +
+        return "PApi{" +
+                "classes=" + classes +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", returnType=" + returnType +
-                ", notes='" + notes + '\'' +
-                ", errors=" + errors +
-                ", params=" + params +
-                ", path='" + path + '\'' +
-                ", gzip=" + gzip +
+                ", data=" + data +
                 '}';
     }
 }

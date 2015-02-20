@@ -14,15 +14,15 @@
  * limitations under the License.
  *
  */
-package org.hawkular.helpers.rest_docs_generator;
+package org.hawkular.apt.restdocs;
 
-import org.hawkular.helpers.rest_docs_generator.model.ErrorCode;
-import org.hawkular.helpers.rest_docs_generator.model.PApi;
-import org.hawkular.helpers.rest_docs_generator.model.PClass;
-import org.hawkular.helpers.rest_docs_generator.model.PData;
-import org.hawkular.helpers.rest_docs_generator.model.PMethod;
-import org.hawkular.helpers.rest_docs_generator.model.PParam;
-import org.hawkular.helpers.rest_docs_generator.model.PProperty;
+import org.hawkular.apt.restdocs.model.ErrorCode;
+import org.hawkular.apt.restdocs.model.PApi;
+import org.hawkular.apt.restdocs.model.PClass;
+import org.hawkular.apt.restdocs.model.PData;
+import org.hawkular.apt.restdocs.model.PMethod;
+import org.hawkular.apt.restdocs.model.PParam;
+import org.hawkular.apt.restdocs.model.PProperty;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -43,22 +43,20 @@ public class AsciiDocWriter implements DataWriter {
 
 
     @Override
-    public void write(File out, PApi pApi) {
+    public void write(File out, PApi pApi) throws Exception {
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(out))) {
             this.writer = bufferedWriter;
             writeIntro(pApi);
             processClasses(pApi.classes);
             processDataClasses(pApi.data);
-        } catch (IOException e) {
-            e.printStackTrace();  // TODO: Customise this generated block
         }
-
     }
 
 
     private void writeIntro(PApi pApi) throws IOException {
         writeLine("= " + pApi.name);
+        writeLine(":icons: font");
         lf();
     }
 
@@ -70,7 +68,7 @@ public class AsciiDocWriter implements DataWriter {
     }
 
     private void processClass(PClass pClass) throws IOException {
-        if (pClass.shortDesc!=null && !pClass.shortDesc.isEmpty()) {
+        if (pClass.shortDesc != null && !pClass.shortDesc.isEmpty()) {
             writeLine("== " + pClass.shortDesc);
         } else {
             writeLine("== " + pClass.path);
@@ -78,19 +76,13 @@ public class AsciiDocWriter implements DataWriter {
         lf();
         writeLine("Implemented in: " + pClass.name);
         lf();
-        if (pClass.description!=null && !pClass.description.isEmpty()) {
+        if (pClass.description != null && !pClass.description.isEmpty()) {
             writeLine("Description: " + pClass.description);
             lf();
         }
 
-        if (!pClass.produces.isEmpty()) {
-            writeLine("Produces:" );
-            lf();
-            for (String name : pClass.produces ) {
-                writeLine("* " + name);
-            }
-            lf();
-        }
+        handleMediaTypes(pClass.produces, "Produces:");
+        handleMediaTypes(pClass.consumes, "Consumes:");
 
 
         for (PMethod method : pClass.methods) {
@@ -100,8 +92,27 @@ public class AsciiDocWriter implements DataWriter {
         lf();
     }
 
+    /**
+     * List the possible media types of this class
+     *
+     * @param types  List of types
+     * @param header Header line
+     * @throws IOException If writing fails
+     */
+    private void handleMediaTypes(List<String> types, String header) throws IOException {
+        if (!types.isEmpty()) {
+            writeLine(header);
+            lf();
+            for (String name : types) {
+                writeLine("* " + name);
+            }
+            lf();
+        }
+    }
+
     private void processMethod(PMethod method, String outerPath) throws IOException {
-        writeLine("=== " +method.method + " /" + outerPath + "/" + method.path );
+        String header = method.method + " /" + outerPath + "/" + method.path;
+        writeLine("=== " + header);
         lf();
         if (method.gzip) {
             writeLine("Supports GZIP'd responses");
@@ -111,13 +122,13 @@ public class AsciiDocWriter implements DataWriter {
         writeLine("Description: " + method.description);
         lf();
 
-        if (method.notes!=null && !method.notes.isEmpty()) {
+        if (method.notes != null && !method.notes.isEmpty()) {
             writeLine(".NOTE");
             writeLine(method.notes);
             lf();
         }
 
-        if (method.returnType!=null) {
+        if (method.returnType != null) {
             write("Return type: ");
             if (method.returnType.typeId.startsWith("...")) {
                 write("[[" + method.returnType.typeId + "]] ");
@@ -147,7 +158,7 @@ public class AsciiDocWriter implements DataWriter {
         for (PParam pParam : params) {
             writeLine("|" + pParam.name + "|" + pParam.required + "|" + pParam.paramType.name()
                     + "|" + pParam.allowableValues + "|" + pParam.defaultValue
-                    + "|" + pParam.description );
+                    + "|" + pParam.description);
         }
         writeLine("|===");
         lf();
@@ -159,7 +170,7 @@ public class AsciiDocWriter implements DataWriter {
         writeLine("|Code|Reason");
         lf();
         for (ErrorCode ec : errors) {
-            writeLine("| " + ec.code + "|" + ec.reason );
+            writeLine("| " + ec.code + "|" + ec.reason);
         }
         writeLine("|===");
         lf();
@@ -168,11 +179,11 @@ public class AsciiDocWriter implements DataWriter {
 
     private void processDataClasses(List<PData> data) throws IOException {
 
-        if (data==null || data.isEmpty()) {
+        if (data == null || data.isEmpty()) {
             return;
         }
 
-        writeLine("== Data Classes" );
+        writeLine("== Data Classes");
         lf();
         for (PData pData : data) {
             processDataClass(pData);
@@ -181,11 +192,11 @@ public class AsciiDocWriter implements DataWriter {
     }
 
     private void processDataClass(PData pData) throws IOException {
-        writeLine("[#" + pData.nameId+"]");
+        writeLine("[#" + pData.nameId + "]");
         writeLine("=== " + pData.name + " - " + pData.shortDescription);
         lf();
 
-        if (pData.description!=null && !pData.description.isEmpty()) {
+        if (pData.description != null && !pData.description.isEmpty()) {
             writeLine("Description: " + pData.description);
             lf();
         }
@@ -196,7 +207,7 @@ public class AsciiDocWriter implements DataWriter {
             writeLine("|===");
             writeLine("|Name|Type|Description");
             lf();
-            int notecount=1;
+            int notecount = 1;
             for (PProperty property : pData.properties) {
                 String descr = property.description == null ? "" : property
                         .description;
@@ -204,19 +215,19 @@ public class AsciiDocWriter implements DataWriter {
                         .append("|").append(property.name)
                         .append("|").append(property.type)
                         .append("|").append(descr);
-                if (property.notes!=null) {
-                    builder.append(" ("+notecount+")");
+                if (property.notes != null) {
+                    builder.append(" (").append(notecount).append(")");
                     notecount++;
                 }
                 writeLine(builder.toString());
             }
             writeLine("|===");
             // There were some notes - let's list them
-            if (notecount>1) {
-                notecount=1;
+            if (notecount > 1) {
+                notecount = 1;
                 for (PProperty property : pData.properties) {
-                    if (property.notes!=null) {
-                        writeLine("<"+notecount+"> " + property.notes);
+                    if (property.notes != null) {
+                        writeLine("<" + notecount + "> " + property.notes);
                         notecount++;
                     }
                 }

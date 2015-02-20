@@ -17,15 +17,17 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-package org.hawkular.helpers.rest_docs_generator.test;
+package org.hawkular.apt.restdocs.test;
 
 import com.wordnik.swagger.annotations.ApiClass;
 import com.wordnik.swagger.annotations.ApiProperty;
 
 /**
  * Just a sample bean
+ *
  * @author Heiko W. Rupp
  */
+@SuppressWarnings("unused")
 @ApiClass(value = "A sample bean", description = "This bean is a DTO for ReST")
 public class FooBean {
 
@@ -39,7 +41,7 @@ public class FooBean {
         this.value = value;
     }
 
-    @ApiProperty( value = "This is the customer id", notes = "This is a longer note explaining some stuff, that may " +
+    @ApiProperty(value = "This is the customer id", notes = "This is a longer note explaining some stuff, that may " +
             "not fit the short 'value' attribute")
     public int getId() {
         return id;

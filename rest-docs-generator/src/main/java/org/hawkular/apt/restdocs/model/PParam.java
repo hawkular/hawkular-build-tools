@@ -14,20 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hawkular.helpers.rest_docs_generator.model;
+package org.hawkular.apt.restdocs.model;
 
 /**
- * Representation of an Error code
+ * Representation of a Parameter
  *
  * @author Heiko W. Rupp
  */
-public class ErrorCode {
+public class PParam {
 
-    public String reason;
-    public int code;
-
-    public ErrorCode(int code, String reason) {
-        this.code = code;
-        this.reason = reason;
-    }
+    public String allowableValues = "all";
+    public String defaultValue;
+    public String description;
+    public String name;
+    public ParamType paramType;
+    public boolean required = false;
+    public PTypeInfo typeInfo;
 }

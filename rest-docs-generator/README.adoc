@@ -1,16 +1,20 @@
 = REST-docs-generator
+:icons: font
 
-This package contains an annotation processor that
+This package contains an annotation processor that looks at the Swagger and JAX-RS annotations and generates
+documentation in AsciiDoc format and/or a generic XML output, that can be further transformed via XSLT.
+
+
 
 == Simple setup
 
 To use the processor without any additional configuration, it is enough to add the following dependency on your maven
  project:
 
-[source,xml]
+[source,xml,indent=0]
 ----
     <dependency>
-      <groupId>org.hawkular.helpers</groupId>
+      <groupId>org.hawkular.apt</groupId>
       <artifactId>rest-docs-generator</artifactId>
       <version>1.0.0</version>  <!--1-->
       <scope>provided</scope>
@@ -26,13 +30,13 @@ the embedded service provider file enable the processor.
 In many cases the above simple setup is enough. If you want or need to parametrize the processor, you can
 do that via configuring the maven-processor-plugin like this:
 
-[source,xml,noindent]
+[source,xml,indent=0]
 ----
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <annotationProcessors>
-            <annotationProcessor>org.hawkular.helpers.rest_docs_generator.Processor</annotationProcessor>
+            <annotationProcessor>org.hawkular.apt.restdocs.Processor</annotationProcessor>
           </annotationProcessors>
           <compilerArguments>
             <AtargetDirectory>${project.build.directory}/docs/</AtargetDirectory> <!--1-->

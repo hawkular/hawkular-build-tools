@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hawkular.helpers.rest_docs_generator;
+package org.hawkular.apt.restdocs;
 
-import org.hawkular.helpers.rest_docs_generator.model.PApi;
+import org.hawkular.apt.restdocs.model.PApi;
 
 import java.io.File;
 
@@ -27,5 +27,5 @@ import java.io.File;
  */
 public interface DataWriter {
 
-    void write(File out, PApi api);
+    void write(File out, PApi api) throws Exception;
 }

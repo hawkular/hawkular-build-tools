@@ -17,7 +17,7 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-package org.hawkular.helpers.rest_docs_generator.test;
+package org.hawkular.apt.restdocs.test;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiError;
@@ -25,6 +25,7 @@ import com.wordnik.swagger.annotations.ApiErrors;
 import com.wordnik.swagger.annotations.ApiOperation;
 
 import javax.ejb.Local;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,18 +35,20 @@ import javax.ws.rs.core.Response;
 
 /**
  * Another example of @Api* usage
+ *
  * @author Heiko W. Rupp
  */
 @Api(value = "My important business EJB", basePath = "http://localhost:9999/other_path")
 @Local
-@Produces({"application/json","application/xml","text/html"})
+@Produces({"application/json", "application/xml", "text/html"})
+@Consumes({"application/json"})
 @Path("/biz-ejb")
 public interface SomeEjbInterface {
 
-    @ApiOperation(value="Gives the current status", responseClass = "com.acme.MyResponse", notes = "bla bla")
+    @ApiOperation(value = "Gives the current status", responseClass = "com.acme.MyResponse", notes = "bla bla")
     @ApiErrors({
-            @ApiError(code = 404,reason = "If there is no resource or group with the passed id "),
-            @ApiError(code = 409,reason =" Resource type does not match the group one")
+            @ApiError(code = 404, reason = "If there is no resource or group with the passed id "),
+            @ApiError(code = 409, reason = " Resource type does not match the group one")
     })
     @GET
     @Path("/")

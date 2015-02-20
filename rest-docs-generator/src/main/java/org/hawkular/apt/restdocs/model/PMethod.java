@@ -14,37 +14,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.hawkular.helpers.rest_docs_generator.model;
+package org.hawkular.apt.restdocs.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
- * Representation of a class
+ * Representation of a Method
  *
  * @author Heiko W. Rupp
  */
-public class PClass {
+public class PMethod {
 
-    public String basePath;
+    public String method;
     public String name;
-    public String path;
-    public String shortDesc;
-    public List<String> produces = Collections.emptyList();
-    public List<PMethod> methods = new ArrayList<>();
     public String description;
+    public PTypeInfo returnType;
+    public String notes;
+    public List<ErrorCode> errors = new ArrayList<>();
+    public List<PParam> params = new ArrayList<>();
+    public String path;
+    public boolean gzip = false;
 
     @Override
     public String toString() {
-        return "PClass{" +
-                "basePath='" + basePath + '\'' +
+        return "PMethod{" +
+                "method='" + method + '\'' +
                 ", name='" + name + '\'' +
-                ", path='" + path + '\'' +
-                ", shortDesc='" + shortDesc + '\'' +
-                ", produces=" + produces +
-                ", methods=" + methods +
                 ", description='" + description + '\'' +
+                ", returnType=" + returnType +
+                ", notes='" + notes + '\'' +
+                ", errors=" + errors +
+                ", params=" + params +
+                ", path='" + path + '\'' +
+                ", gzip=" + gzip +
                 '}';
     }
 }
