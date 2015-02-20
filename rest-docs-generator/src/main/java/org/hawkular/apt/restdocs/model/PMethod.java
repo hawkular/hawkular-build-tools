@@ -33,6 +33,8 @@ public class PMethod {
     public String notes;
     public List<ErrorCode> errors = new ArrayList<>();
     public List<PParam> params = new ArrayList<>();
+    public List<String> produces = new ArrayList<>();
+    public List<String> consumes = new ArrayList<>();
     public String path;
     public boolean gzip = false;
 

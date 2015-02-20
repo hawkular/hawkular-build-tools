@@ -23,6 +23,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiError;
 import com.wordnik.swagger.annotations.ApiErrors;
 import com.wordnik.swagger.annotations.ApiOperation;
+import org.jboss.resteasy.annotations.GZIP;
 
 import javax.ejb.Local;
 import javax.ws.rs.Consumes;
@@ -59,12 +60,15 @@ public interface SomeEjbInterface {
     @Path("/hello")
     public String helloWorld();
 
-    @ApiOperation(value = "Returns hello world", notes = "<xml><simpara>This is XML</simpara></xml><xml>Bla</xml>")
-    @GET
+    @ApiOperation(value = "Returns hello bogus world", notes = "<xml><simpara>This is " +
+            "XML</simpara></xml><xml>Bla</xml>")
+    @GET @GZIP
     @Path("/hello2")
     public String helloBogusWorld();
 
-    @ApiOperation(value = "Returns hello world", notes = "<simpara>This is XML</simpara>")
+    @Consumes("text/plain")
+    @Produces("application/vnd+hawkluar-hello-world;v2")
+    @ApiOperation(value = "Returns hello bogus world2", notes = "<simpara>This is XML</simpara>")
     @GET
     @Path("/hello3")
     public String helloBogusWorld2();

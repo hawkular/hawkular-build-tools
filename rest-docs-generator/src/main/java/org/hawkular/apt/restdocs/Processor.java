@@ -44,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -237,22 +238,30 @@ public class Processor extends AbstractProcessor {
             pClass.basePath = api.basePath();
         }
 
-        Produces produces = classElementIn.getAnnotation(Produces.class);
-        if (produces != null) {
-            String[] types = produces.value();
-            Collections.addAll(pClass.produces, types);
-        }
-        Consumes consumes = classElementIn.getAnnotation(Consumes.class);
-        if (consumes != null) {
-            String[] types = consumes.value();
-            Collections.addAll(pClass.consumes, types);
-        }
+        processProduces(classElementIn, pClass.produces);
+        processConsumes(classElementIn, pClass.consumes);
 
         pApi.classes.add(pClass);
 
         // Loop over the methods on this class
         for (ExecutableElement executableElement : ElementFilter.methodsIn(classElementIn.getEnclosedElements())) {
-            processMethods(pClass, executableElement);
+            processMethod(pClass, executableElement);
+        }
+    }
+
+    private void processProduces(Element elementIn, List<String> out) {
+        Produces produces = elementIn.getAnnotation(Produces.class);
+        if (produces != null) {
+            String[] types = produces.value();
+            Collections.addAll(out, types);
+        }
+    }
+
+    private void processConsumes(Element elementIn, List<String> out) {
+        Consumes produces = elementIn.getAnnotation(Consumes.class);
+        if (produces != null) {
+            String[] types = produces.value();
+            Collections.addAll(out, types);
         }
     }
 
@@ -263,7 +272,7 @@ public class Processor extends AbstractProcessor {
      * @param pClass The class to add the method to
      * @param td     One Type element for the method
      */
-    private void processMethods(PClass pClass, ExecutableElement td) {
+    private void processMethod(PClass pClass, ExecutableElement td) {
 
         log.fine("  Looking at method " + td.getSimpleName().toString());
 
@@ -308,9 +317,10 @@ public class Processor extends AbstractProcessor {
 
         // Loop over the parameters
         processParams(pMethod, td);
-
         processErrors(pMethod, td);
 
+        processProduces(td, pMethod.produces);
+        processConsumes(td, pMethod.consumes);
     }
 
     /**

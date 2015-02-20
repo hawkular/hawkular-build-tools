@@ -152,6 +152,8 @@ public class XmlWriter implements DataWriter {
         addOptionalAttribute(methodElement, "returnType", method.returnType.typeString);
         handleParams(doc, methodElement, method.params);
         handleErrors(doc, methodElement, method.errors);
+        handleMediaTypes(doc, methodElement, method.consumes,"consumes");
+        handleMediaTypes(doc, methodElement, method.produces,"produces");
 
     }
 

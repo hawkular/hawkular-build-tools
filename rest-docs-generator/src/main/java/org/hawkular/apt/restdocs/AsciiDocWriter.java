@@ -130,6 +130,9 @@ public class AsciiDocWriter implements DataWriter {
             lf();
         }
 
+        handleMediaTypes(method.produces, "Produces:");
+        handleMediaTypes(method.consumes, "Consumes:");
+
         if (method.returnType != null) {
             write("Return type: ");
             if (method.returnType.typeId.startsWith("...")) {
