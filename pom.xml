@@ -22,11 +22,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.hawkular</groupId>
-  <artifactId>hawkular-build-tools</artifactId>
+  <artifactId>hawkular-build-tools-parent</artifactId>
   <version>7-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-  <name>Hawkular Build Tools</name>
-  <description>Contains the Checkstyle configuration for Hawkular projects</description>
+  <name>Hawkular Build Tools Parent</name>
+  <description>Contains build tools for Hawkular projects</description>
   <url>https://github.com/hawkular/hawkular-build-tools</url>
   <organization>
     <name>Red Hat, Inc.</name>
@@ -90,24 +91,11 @@
     <version.junit>4.12</version.junit>
   </properties>
 
+  <modules>
+    <module>build-tools</module>
+    <module>rest-docs-generator</module>
+  </modules>
   <dependencies>
-    <dependency>
-       <groupId>com.puppycrawl.tools</groupId>
-       <artifactId>checkstyle</artifactId>
-       <version>${version.com.puppycrawl.tools.checkstyle}</version>
-    </dependency>
-
-    <!-- license header checking deps -->
-    <dependency>
-       <groupId>com.mycila</groupId>
-       <artifactId>license-maven-plugin</artifactId>
-       <version>${version.com.mycila.license-maven-plugin}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jgit</groupId>
-      <artifactId>org.eclipse.jgit</artifactId>
-      <version>${version.org.eclipse.jgit}</version>
-    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
