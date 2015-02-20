@@ -152,7 +152,7 @@ public class Processor extends AbstractProcessor {
             try {
                 dw.write(f, papi);
             } catch (Exception e) {
-                log.severe("Writing AsciiDoc output failed: " + e.getMessage());
+                throw new RuntimeException("Writing adoc file failed: " + e.getMessage());
             }
         }
 
@@ -162,7 +162,7 @@ public class Processor extends AbstractProcessor {
             try {
                 dw.write(f, papi);
             } catch (Exception e) {
-                log.severe("Writing Xml output failed: " + e.getMessage());
+                throw new RuntimeException("Writing Xml output failed: " + e.getMessage());
             }
         }
 

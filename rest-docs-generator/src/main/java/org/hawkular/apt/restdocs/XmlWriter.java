@@ -34,8 +34,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -85,7 +87,7 @@ public class XmlWriter implements DataWriter {
         String s = "..... writing to [" + path + "] ......";
         log.info(s);
 
-        try (FileWriter fw = new FileWriter(out)) {
+        try (Writer fw = new OutputStreamWriter(new FileOutputStream(out), "UTF-8")) {
             fw.write(xmlString);
             fw.flush();
             fw.close();

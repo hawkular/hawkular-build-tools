@@ -26,8 +26,9 @@ import org.hawkular.apt.restdocs.model.PProperty;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.List;
 
@@ -45,7 +46,8 @@ public class AsciiDocWriter implements DataWriter {
     @Override
     public void write(File out, PApi pApi) throws Exception {
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(out))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(out),
+                "UTF-8"))) {
             this.writer = bufferedWriter;
             writeIntro(pApi);
             processClasses(pApi.classes);
