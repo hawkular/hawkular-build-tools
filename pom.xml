@@ -81,30 +81,10 @@
     </snapshotRepository>
   </distributionManagement>
 
-  <properties>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
-
-    <version.com.puppycrawl.tools.checkstyle>6.1.1</version.com.puppycrawl.tools.checkstyle>
-    <version.com.mycila.license-maven-plugin>2.7</version.com.mycila.license-maven-plugin>
-    <version.org.eclipse.jgit>3.6.1.201501031845-r</version.org.eclipse.jgit>
-    <version.junit>4.12</version.junit>
-  </properties>
-
   <modules>
     <module>build-tools</module>
     <module>rest-docs-generator</module>
   </modules>
-  <dependencies>
-
-    <!-- test scope stuff -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${version.junit}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 
   <build>
     <plugins>
