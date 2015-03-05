@@ -89,6 +89,9 @@
 
     <module name="LineLength">
       <property name="max" value="120" />
+      <!-- disable the line length checking for '//' comments because of the annoying fact
+           that build fails when commenting out 120 chars long line (quite common in IDE) -->
+      <property name="ignorePattern" value="^//.*$"/>
     </module>
 
   </module>
