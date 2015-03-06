@@ -32,6 +32,58 @@
 
   <name>Hawkular Build Tools</name>
   <description>Contains the Checkstyle configuration for Hawkular projects</description>
+  <url>https://github.com/hawkular/hawkular-build-tools</url>
+  <organization>
+    <name>Red Hat, Inc.</name>
+    <url>http://redhat.com/</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <distribution>repo</distribution>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>ppalaga</id>
+      <name>Peter Palaga</name>
+      <timezone>Europe/Prague</timezone>
+    </developer>
+  </developers>
+
+  <mailingLists>
+    <mailingList>
+      <name>Hawkular Developer List</name>
+      <subscribe>https://lists.jboss.org/mailman/listinfo/hawkular-dev</subscribe>
+      <unsubscribe>https://lists.jboss.org/mailman/listinfo/hawkular-dev</unsubscribe>
+      <archive>http://lists.jboss.org/pipermail/hawkular-dev</archive>
+    </mailingList>
+  </mailingLists>
+
+  <scm>
+    <connection>scm:git:git://github.com/hawkular/hawkular-build-tools.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/hawkular/hawkular-build-tools.git</developerConnection>
+    <url>https://github.com/hawkular/hawkular-build-tools</url>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <url>https://issues.jboss.org/browse/HAWKULAR</url>
+    <system>jira</system>
+  </issueManagement>
+  <distributionManagement>
+    <repository>
+      <id>jboss-releases-repository</id>
+      <name>JBoss Releases Repository</name>
+      <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>jboss-snapshots-repository</id>
+      <name>JBoss Snapshots Repository</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
