@@ -45,5 +45,5 @@ local-repo-eap
 
 #OS X index files
 .DS_Store
-/pom.xml.releaseBackup
+pom.xml.releaseBackup
 /release.properties
