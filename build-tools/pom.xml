@@ -21,15 +21,27 @@
   <artifactId>hawkular-build-tools</artifactId>
   <version>7-SNAPSHOT</version>
 
+  <!-- Link to parent removed as a workaround for http://jira.codehaus.org/browse/MCHECKSTYLE-250
   <parent>
     <groupId>org.hawkular</groupId>
     <artifactId>hawkular-build-tools-parent</artifactId>
     <version>7-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
+  -->
 
   <name>Hawkular Build Tools</name>
   <description>Contains the Checkstyle configuration for Hawkular projects</description>
+
+  <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+
+    <version.com.puppycrawl.tools.checkstyle>6.1.1</version.com.puppycrawl.tools.checkstyle>
+    <version.com.mycila.license-maven-plugin>2.7</version.com.mycila.license-maven-plugin>
+    <version.org.eclipse.jgit>3.6.1.201501031845-r</version.org.eclipse.jgit>
+    <version.junit>4.12</version.junit>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -48,6 +60,14 @@
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
       <version>${version.org.eclipse.jgit}</version>
+    </dependency>
+
+    <!-- test scope stuff -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
