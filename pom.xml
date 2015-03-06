@@ -83,7 +83,6 @@
 
   <modules>
     <module>build-tools</module>
-    <module>rest-docs-generator</module>
   </modules>
 
   <build>
