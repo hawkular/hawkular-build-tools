@@ -90,8 +90,6 @@
     <maven.compiler.target>1.6</maven.compiler.target>
 
     <version.com.puppycrawl.tools.checkstyle>6.1.1</version.com.puppycrawl.tools.checkstyle>
-    <version.com.mycila.license-maven-plugin>2.7</version.com.mycila.license-maven-plugin>
-    <version.org.eclipse.jgit>3.6.1.201501031845-r</version.org.eclipse.jgit>
     <version.junit>4.12</version.junit>
   </properties>
 
@@ -100,18 +98,6 @@
        <groupId>com.puppycrawl.tools</groupId>
        <artifactId>checkstyle</artifactId>
        <version>${version.com.puppycrawl.tools.checkstyle}</version>
-    </dependency>
-
-    <!-- license header checking deps -->
-    <dependency>
-       <groupId>com.mycila</groupId>
-       <artifactId>license-maven-plugin</artifactId>
-       <version>${version.com.mycila.license-maven-plugin}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jgit</groupId>
-      <artifactId>org.eclipse.jgit</artifactId>
-      <version>${version.org.eclipse.jgit}</version>
     </dependency>
 
     <!-- test scope stuff -->
