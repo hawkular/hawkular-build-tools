@@ -23,7 +23,7 @@
 
   <groupId>org.hawkular</groupId>
   <artifactId>hawkular-build-tools-parent</artifactId>
-  <version>8-SNAPSHOT</version>
+  <version>8</version>
   <packaging>pom</packaging>
 
   <name>Hawkular Build Tools Parent</name>
@@ -62,7 +62,7 @@
     <connection>scm:git:git://github.com/hawkular/hawkular-build-tools.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/hawkular/hawkular-build-tools.git</developerConnection>
     <url>https://github.com/hawkular/hawkular-build-tools</url>
-    <tag>HEAD</tag>
+    <tag>8</tag>
   </scm>
   <issueManagement>
     <url>https://issues.jboss.org/browse/HAWKULAR</url>
