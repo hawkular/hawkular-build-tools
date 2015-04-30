@@ -91,6 +91,16 @@
       <property name="max" value="120" />
     </module>
 
+    <!-- Package names should be all lower case. Examples of legal package names:
+          org.hawkular.my.coolpackage
+          org.hawkular.mycoolpackage
+          org.hawkular.my.cool.package
+        Do not use camelCase.
+        Use underscores only as the last resort to make an alien package name legal
+    -->
+    <module name="PackageName">
+      <property name="format" value="^org\.hawkular(\.[a-z][a-z0-9_]*)*$" />
+    </module>
   </module>
 
 </module>
