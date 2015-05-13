@@ -93,6 +93,9 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
 
+    <!-- nexus-staging-maven-plugin -->
+    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+
     <!--
       Maven plugin versions
         Naming convention: version.${artifactId} whenever unique enough; otherwise version.${groupId}.${artifactId}
