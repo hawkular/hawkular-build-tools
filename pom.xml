@@ -81,23 +81,81 @@
     </snapshotRepository>
   </distributionManagement>
 
+
+  <properties>
+
+    <!-- Maven general -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- maven-compiler-plugin -->
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+
+    <!--
+      Maven plugin versions
+        Naming convention: version.${artifactId} whenever unique enough; otherwise version.${groupId}.${artifactId}
+        Ordering: alphabetic
+    -->
+    <version.maven-release-plugin>2.5.1</version.maven-release-plugin>
+    <version.nexus-staging-maven-plugin>1.6.5</version.nexus-staging-maven-plugin>
+
+    <!-- Repository Deployment URLs -->
+    <jboss.nexus.base.url>https://repository.jboss.org/nexus</jboss.nexus.base.url>
+    <jboss.releases.repo.url>${jboss.nexus.base.url}/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
+    <jboss.snapshots.repo.url>${jboss.nexus.base.url}/content/repositories/snapshots/</jboss.snapshots.repo.url>
+
+  </properties>
+
   <modules>
     <module>build-tools</module>
   </modules>
 
   <build>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${version.maven-release-plugin}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>${version.nexus-staging-maven-plugin}</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.1</version>
         <configuration>
           <tagNameFormat>@{project.version}</tagNameFormat>
           <preparationGoals>package</preparationGoals>
           <goals>deploy</goals>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <nexusUrl>${jboss.nexus.base.url}</nexusUrl>
+          <!-- The server "id" element from settings to use authentication from -->
+          <serverId>jboss-releases-repository</serverId>
+        </configuration>
+      </plugin>
+
     </plugins>
+
   </build>
 
 </project>
