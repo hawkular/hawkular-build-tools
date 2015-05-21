@@ -2,7 +2,7 @@
 
 The following steps will tell you what you need to do in order to build a release for public consumption.
 
-Before you can do anything, you must ensure your Maven environment and project are configured property.
+Before you can do anything, you must ensure your Maven environment and project are configured properly.
 
 * Put your Maven public repository credentials in your ~/.m2/settings.xml file. For example, the Hawkular parent pom defines the public maven repository that we use for releases under the name "jboss-releases-repository", so in your settings.xml you will need something like this:
 [source,xml]
