@@ -50,3 +50,5 @@ NOTE: If you did not pass in -DpushChanges=false in step 2 and -DlocalCheckout=t
 * Find your staging repository that was created for your release. You will have to select each row and look at the Summary tab at the bottom. Find the one with you as the "Owner". Further verify by looking at the "Content" tab - make sure the artifacts in that repository are what you expect.
 * Once you find your staging repository, select it and click the "Close" button.
 * Once the staging repository is closed successfully, click the "Release" button. By default your staging repository will be dropped and your content will be moved to the public repository. At that point, Nexus will serve your artifacts via the public repository to anyone that wants to download them.
+
+*STEP 6:* Your master branch now has its pom.xml files moved to the next development snapshot version. You can commit to your git repo and store changes. Since this is at the next release number, it won't affect your release. You are now effectively working on the next release.
