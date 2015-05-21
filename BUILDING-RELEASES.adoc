@@ -22,28 +22,28 @@ Before you can do anything, you must ensure your Maven environment and project a
 
 Once you make sure your Maven environment and project are properly configured as explained above, you can release your project's artifacts. The following steps will ensure you do all of the release build work on your local machine only. Only at the end will things be sent out to the remote git repository and the public maven repository. That way, if something fails along the way, you can delete your local git repository and git clone a fresh clean copy to try again.
 
-STEP 1: Make sure your project builds. If your project inherits from the hawkular parent POM, you can build with -Prelease to make it better resemble the release build (But it won't be exact. For example, the Maven release plugin performs stricter Javadoc checking - so building with -Prelease might pass, but your Maven release plugin build may still fail).
+*STEP 1:* Make sure your project builds. If your project inherits from the hawkular parent POM, you can build with -Prelease to make it better resemble the release build (But it won't be exact. For example, the Maven release plugin performs stricter Javadoc checking - so building with -Prelease might pass, but your Maven release plugin build may still fail).
 [source]
 mvn clean install -Prelease
 
-STEP 2: Prepare your release. Once you execute this, you will be asked for version strings to use for your release and your next development snapshot version. You can usually just hit "enter" on all the questions to simply take the defaults. Once this step completes, you will have a release tag created in your local git repository and your pom.xml files will be moved to your next development snapshot version.
+*STEP 2:* Prepare your release. Once you execute this, you will be asked for version strings to use for your release and your next development snapshot version. You can usually just hit "enter" on all the questions to simply take the defaults. Once this step completes, you will have a release tag created in your local git repository and your pom.xml files will be moved to your next development snapshot version.
 [source]
 mvn clean release:clean release:prepare -DpushChanges=false
 
-STEP 3: Now perform your release build. This forks a separate build and performs the release compile and assembly as well as performing strict javadoc checks. It also builds source and javadoc jars when appropriate. After this is complete, your artifacts will be uploaded to a Nexus staging repository that has been created for you.
+*STEP 3:* Now perform your release build. This forks a separate build and performs the release compile and assembly as well as performing strict javadoc checks. It also builds source and javadoc jars when appropriate. After this is complete, your artifacts will be uploaded to a Nexus staging repository that has been created for you.
 
 [source]
 mvn release:perform -DlocalCheckout=true
 
 WARNING: If this step fails, you will need to go into the Nexus UI and drop the unfinished staging repository that was created for it (see below for how to find your staging repository).
 
-STEP 4: Push your git local repo to the git remote repo. Make sure you tell it to push tags.
+*STEP 4:* Push your git local repo to the git remote repo. Make sure you tell it to push tags.
 [source]
 git push origin master --tags
 
 NOTE: If you did not pass in -DpushChanges=false in step 2 and -DlocalCheckout=true in step 3, you can skip this step 4. The Maven plugin will push everything for you along the way. The problem is if you didn't use those -D settings and step 2 or 3 failed, you will have commits and tags up in your remote git repo that you will have to either remove or workaround.
 
-STEP 5: Now publish your Nexus snapshot repository by doing a "release"
+*STEP 5:* Now publish your Nexus snapshot repository by doing a "release"
 
 * Go to https://repository.jboss.org/nexus/#stagingRepositories and log in as a user with the appropriate permissions.
 * Sort the list by the "Updated" column so the newest staging repositories are at the top of the list.
