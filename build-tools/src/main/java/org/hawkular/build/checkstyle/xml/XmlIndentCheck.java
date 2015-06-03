@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,7 +37,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.FastStack;
 
 /**
  * @author <a href="mailto:ppalaga@redhat.com">Peter Palaga</a>
@@ -109,7 +110,7 @@ public final class XmlIndentCheck extends AbstractFileSetCheck {
 
         private Locator locator;
 
-        private FastStack<ElementEntry> stack = FastStack.newInstance();
+        private Deque<ElementEntry> stack = new ArrayDeque<XmlIndentCheck.ElementEntry>();
 
         /**
          * Stores the passed characters into {@link #charBuffer}.
