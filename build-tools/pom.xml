@@ -17,76 +17,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.hawkular</groupId>
   <artifactId>hawkular-build-tools</artifactId>
-  <version>11-SNAPSHOT</version>
 
-  <!-- Link to parent removed as a workaround for http://jira.codehaus.org/browse/MCHECKSTYLE-250
   <parent>
     <groupId>org.hawkular</groupId>
     <artifactId>hawkular-build-tools-parent</artifactId>
-    <version>7-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
+    <version>11-SNAPSHOT</version>
   </parent>
-  -->
 
   <name>Hawkular Build Tools</name>
   <description>Contains the Checkstyle configuration for Hawkular projects</description>
-  <url>https://github.com/hawkular/hawkular-build-tools</url>
-  <organization>
-    <name>Red Hat, Inc.</name>
-    <url>http://redhat.com/</url>
-  </organization>
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <distribution>repo</distribution>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-    </license>
-  </licenses>
-
-  <developers>
-    <developer>
-      <id>ppalaga</id>
-      <name>Peter Palaga</name>
-      <timezone>Europe/Prague</timezone>
-    </developer>
-  </developers>
-
-  <mailingLists>
-    <mailingList>
-      <name>Hawkular Developer List</name>
-      <subscribe>https://lists.jboss.org/mailman/listinfo/hawkular-dev</subscribe>
-      <unsubscribe>https://lists.jboss.org/mailman/listinfo/hawkular-dev</unsubscribe>
-      <archive>http://lists.jboss.org/pipermail/hawkular-dev</archive>
-    </mailingList>
-  </mailingLists>
-
-  <scm>
-    <connection>scm:git:git://github.com/hawkular/hawkular-build-tools.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/hawkular/hawkular-build-tools.git</developerConnection>
-    <url>https://github.com/hawkular/hawkular-build-tools</url>
-    <tag>HEAD</tag>
-  </scm>
-  <issueManagement>
-    <url>https://issues.jboss.org/browse/HAWKULAR</url>
-    <system>jira</system>
-  </issueManagement>
-  <distributionManagement>
-    <repository>
-      <id>jboss-releases-repository</id>
-      <name>JBoss Releases Repository</name>
-      <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
-    </repository>
-    <snapshotRepository>
-      <id>jboss-snapshots-repository</id>
-      <name>JBoss Snapshots Repository</name>
-      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <properties>
-
     <version.com.puppycrawl.tools.checkstyle>6.1.1</version.com.puppycrawl.tools.checkstyle>
     <version.junit>4.12</version.junit>
   </properties>
