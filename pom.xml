@@ -58,6 +58,10 @@
     </mailingList>
   </mailingLists>
 
+  <modules>
+    <module>build-tools</module>
+  </modules>
+
   <scm>
     <connection>scm:git:git://github.com/hawkular/hawkular-build-tools.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/hawkular/hawkular-build-tools.git</developerConnection>
@@ -80,7 +84,6 @@
       <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
-
 
   <properties>
 
@@ -111,10 +114,6 @@
 
   </properties>
 
-  <modules>
-    <module>build-tools</module>
-  </modules>
-
   <build>
     <pluginManagement>
       <plugins>
@@ -133,7 +132,6 @@
 
       </plugins>
     </pluginManagement>
-
     <plugins>
 
       <plugin>
@@ -158,7 +156,6 @@
       </plugin>
 
     </plugins>
-
   </build>
 
 </project>
