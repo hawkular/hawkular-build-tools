@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Locale;
@@ -47,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
  */
 public class XmlIndentCheckTest {
     protected static class SilentLogger extends DefaultLogger {
-        public SilentLogger(OutputStream out) {
+        public SilentLogger(OutputStream out) throws UnsupportedEncodingException {
             super(out, true);
         }
 
