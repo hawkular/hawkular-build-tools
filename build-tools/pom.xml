@@ -30,7 +30,7 @@
   <description>Contains the Checkstyle configuration for Hawkular projects</description>
 
   <properties>
-    <version.com.puppycrawl.tools.checkstyle>6.7</version.com.puppycrawl.tools.checkstyle>
+    <version.com.puppycrawl.tools.checkstyle>6.8</version.com.puppycrawl.tools.checkstyle>
     <version.junit>4.12</version.junit>
   </properties>
 
