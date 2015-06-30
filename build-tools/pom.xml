@@ -36,9 +36,15 @@
 
   <dependencies>
     <dependency>
-       <groupId>com.puppycrawl.tools</groupId>
-       <artifactId>checkstyle</artifactId>
-       <version>${version.com.puppycrawl.tools.checkstyle}</version>
+      <groupId>com.puppycrawl.tools</groupId>
+      <artifactId>checkstyle</artifactId>
+      <version>${version.com.puppycrawl.tools.checkstyle}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- test scope stuff -->
