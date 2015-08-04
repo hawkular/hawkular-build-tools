@@ -60,6 +60,7 @@
 
   <modules>
     <module>build-tools</module>
+    <module>ide-configs/idea</module>
   </modules>
 
   <scm>

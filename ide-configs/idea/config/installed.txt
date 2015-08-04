@@ -1,0 +1,2 @@
+com.intellij
+org.asciidoctor.intellij.asciidoc
