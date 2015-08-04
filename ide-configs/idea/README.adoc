@@ -1,0 +1,15 @@
+= Configuration Files for Idea IDE
+
+If you have an existing hawkular Scheme and you want to be 100% sure the new one will be imported and overrides all the existing settings, just use
+
+```bash
+rm ~/.IntelliJIdea*/config/codestyles/*
+```
+
+To obtain the `settings.jar`, run 
+
+```bash
+mvn clean install
+```
+
+You'll find the `settings.jar` in the `target` directory.

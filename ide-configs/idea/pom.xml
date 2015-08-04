@@ -24,6 +24,7 @@
   
   <artifactId>hawkular-ide-config-idea</artifactId>
   <packaging>pom</packaging>
+  <name>Hawkular Build Tools - Idea Config</name>
 
   <properties>
     <idea.settings.name>settings</idea.settings.name>
