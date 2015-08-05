@@ -30,12 +30,13 @@
   <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
   <JavaCodeStyleSettings>
     <option name="ANNOTATION_PARAMETER_WRAP" value="1" />
-    <option name="ALIGN_MULTILINE_ANNOTATION_PARAMETERS" value="true" />
+    <!--<option name="ALIGN_MULTILINE_ANNOTATION_PARAMETERS" value="true" />-->
   </JavaCodeStyleSettings>
   <XML>
     <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
   </XML>
   <codeStyleSettings language="JAVA">
+  <!--  
     <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE" value="false" />
     <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
     <option name="ALIGN_MULTILINE_PARAMETERS_IN_CALLS" value="true" />
@@ -44,6 +45,7 @@
     <option name="ALIGN_MULTILINE_TERNARY_OPERATION" value="true" />
     <option name="ALIGN_MULTILINE_METHOD_BRACKETS" value="true" />
     <option name="ALIGN_MULTILINE_ARRAY_INITIALIZER_EXPRESSION" value="true" />
+    -->
     <option name="CALL_PARAMETERS_WRAP" value="1" />
     <option name="METHOD_PARAMETERS_WRAP" value="1" />
     <option name="RESOURCE_LIST_WRAP" value="1" />
