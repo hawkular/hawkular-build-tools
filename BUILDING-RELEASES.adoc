@@ -26,9 +26,9 @@ Once you make sure your Maven environment and project are properly configured as
 [source]
 mvn clean install -Prelease
 
-*STEP 2:* Prepare your release. Once you execute this, you will be asked for version strings to use for your release and your next development snapshot version. You can usually just hit "enter" on all the questions to simply take the defaults. Once this step completes, you will have a release tag created in your local git repository and your pom.xml files will be moved to your next development snapshot version.
+*STEP 2:* Prepare your release. Once you execute this, you will be asked for version strings to use for your release and your next development snapshot version. You can usually just hit "enter" on all the questions to simply take the defaults (note that the autoVersionSubmodules=true means all the submodules will be assigned the version as the parent). Once this step completes, you will have a release tag created in your local git repository and your pom.xml files will be moved to your next development snapshot version.
 [source]
-mvn clean release:clean release:prepare -DpushChanges=false
+mvn clean release:clean release:prepare -DpushChanges=false -DautoVersionSubmodules=true
 
 *STEP 3:* Now perform your release build. This forks a separate build and performs the release compile and assembly as well as performing strict javadoc checks. It also builds source and javadoc jars when appropriate. After this is complete, your artifacts will be uploaded to a Nexus staging repository that has been created for you.
 
