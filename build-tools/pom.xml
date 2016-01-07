@@ -29,32 +29,4 @@
   <name>Hawkular Build Tools</name>
   <description>Contains the Checkstyle configuration for Hawkular projects</description>
 
-  <properties>
-    <version.com.puppycrawl.tools.checkstyle>6.8</version.com.puppycrawl.tools.checkstyle>
-    <version.junit>4.12</version.junit>
-  </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>com.puppycrawl.tools</groupId>
-      <artifactId>checkstyle</artifactId>
-      <version>${version.com.puppycrawl.tools.checkstyle}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.sun</groupId>
-          <artifactId>tools</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <!-- test scope stuff -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${version.junit}</version>
-      <scope>test</scope>
-    </dependency>
-
-  </dependencies>
-
 </project>

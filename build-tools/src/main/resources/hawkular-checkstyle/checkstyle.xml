@@ -36,10 +36,6 @@
     <property name="message" value="Line has trailing spaces." />
   </module>
 
-  <module name="org.hawkular.build.checkstyle.xml.XmlIndentCheck">
-    <property name="indentSize" value="2" />
-  </module>
-
   <module name="TreeWalker">
 
     <property name="cacheFile" value="${checkstyle.cache.file}" />
