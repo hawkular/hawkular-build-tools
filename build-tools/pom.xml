@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.hawkular</groupId>
     <artifactId>hawkular-build-tools-parent</artifactId>
-    <version>15</version>
+    <version>16-SNAPSHOT</version>
   </parent>
 
   <artifactId>hawkular-build-tools</artifactId>
