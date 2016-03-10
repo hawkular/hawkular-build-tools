@@ -18,7 +18,7 @@
   <parent>
     <groupId>org.hawkular</groupId>
     <artifactId>hawkular-build-tools-parent</artifactId>
-    <version>15-SNAPSHOT</version>
+    <version>15</version>
   </parent>
 
   <artifactId>hawkular-ide-configs</artifactId>
