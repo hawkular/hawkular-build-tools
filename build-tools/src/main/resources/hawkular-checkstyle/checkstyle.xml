@@ -86,10 +86,6 @@
     <module name="CovariantEquals" />
     <module name="ArrayTypeStyle" />
 
-    <module name="LineLength">
-      <property name="max" value="120" />
-    </module>
-
     <!-- Package names should be all lower case. Examples of legal package names:
           org.hawkular.my.coolpackage
           org.hawkular.mycoolpackage
