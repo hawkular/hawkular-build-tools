@@ -196,35 +196,47 @@ def writeDataTypes(Writer writer, Map definitions) {
     writer.println """
 [[${definitionName}]]
 === ${definitionName}
+"""
+
+    if (definition.value.properties != null && !definition.value.properties.isEmpty()) {
+      writer.println """
 [cols="15,^10,35,^15,^10,^15", options="header"]
 |=======================
 |Name|Required|Description|Type|Format|Allowable Values
 """
-    definition.value.properties.each { Entry property ->
-      def propertyName = property.key
-      def required = required((definition.value.required ?: []).contains(propertyName))
-      def description = property.value.description ?: '-'
-      def type
-      switch (property.value.type) {
-        case 'array':
-          def items = property.value.items ?: [:]
-          if (items['$ref']) {
-            String itemsRef = items['$ref']
-            type = "array of <<${itemsRef.substring("#/definitions/".length())}>>"
-          } else {
-            type = "array of ${items.type}"
-          }
-          break;
-        default:
-          type = property.value.type
+      definition.value.properties.each {Entry property ->
+        def propertyName = property.key
+        def required = required((definition.value.required ?: []).contains(propertyName))
+        def description = property.value.description ?: '-'
+        def type
+        switch (property.value.type) {
+          case 'array':
+            def items = property.value.items ?: [:]
+            if (items['$ref']) {
+              String itemsRef = items['$ref']
+              type = "array of <<${itemsRef.substring("#/definitions/".length())}>>"
+            } else {
+              type = "array of ${items.type}"
+            }
+            break;
+          default:
+            type = property.value.type
+        }
+        def format = property.value.format ?: '-'
+        def allowableValues = allowableValues(property.value.enum)
+        writer.println "|${propertyName}|${required}|${description}|${type}|${format}|${allowableValues}"
       }
-      def format = property.value.format ?: '-'
-      def allowableValues = allowableValues(property.value.enum)
-      writer.println "|${propertyName}|${required}|${description}|${type}|${format}|${allowableValues}"
-    }
-    writer.println '''
+
+      writer.println '''
 |=======================
 '''
+    } else {
+      def inherited = definition.value["allOf"]?.collect { it["\$ref"] }?.findAll {it != null}
+      if (inherited != null && !inherited.isEmpty()) {
+        writer.print "Inherits: "
+        writer.println inherited.collect{ "<<${it.substring("#/definitions/".length())}>>" }.join(", ")
+      }
+    }
   }
 }
 
