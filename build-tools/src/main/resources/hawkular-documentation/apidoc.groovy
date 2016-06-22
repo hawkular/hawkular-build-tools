@@ -198,15 +198,43 @@ def writeDataTypes(Writer writer, Map definitions) {
 === ${definitionName}
 """
 
-    if (definition.value.properties != null && !definition.value.properties.isEmpty()) {
+    def definitionDescription = definition.value.description
+    if (definitionDescription != null) {
+      writer.println """
+
+${definitionDescription}
+
+"""
+    }
+
+    def inherited = definition.value["allOf"]?.collect { it["\$ref"] }?.findAll {it != null}
+    if (inherited != null && !inherited.isEmpty()) {
+      writer.print "Inherits: "
+      writer.println inherited.collect{ "<<${it.substring("#/definitions/".length())}>>" }.join(", ")
+    }
+
+    def props = definition.value.properties
+    if (props == null) {
+      props = definition.value["allOf"]?.collect { it["properties"] }?.find { it != null }
+    }
+
+    def requiredDef = definition.value.required
+    if (requiredDef == null) {
+      requiredDef = definition.value["allOf"]?.collect { it["required"] }?. find { it != null }
+    }
+    requiredDef = requiredDef == null ? [] : requiredDef
+
+    print(definitionName); print(": "); println(requiredDef)
+
+    if (props != null && !props.isEmpty()) {
       writer.println """
 [cols="15,^10,35,^15,^10,^15", options="header"]
 |=======================
 |Name|Required|Description|Type|Format|Allowable Values
 """
-      definition.value.properties.each {Entry property ->
+      props.each {Entry property ->
         def propertyName = property.key
-        def required = required((definition.value.required ?: []).contains(propertyName))
+        def required = requiredDef.contains(propertyName) ? "Yes" : "No"
         def description = property.value.description ?: '-'
         def type
         switch (property.value.type) {
@@ -230,12 +258,6 @@ def writeDataTypes(Writer writer, Map definitions) {
       writer.println '''
 |=======================
 '''
-    } else {
-      def inherited = definition.value["allOf"]?.collect { it["\$ref"] }?.findAll {it != null}
-      if (inherited != null && !inherited.isEmpty()) {
-        writer.print "Inherits: "
-        writer.println inherited.collect{ "<<${it.substring("#/definitions/".length())}>>" }.join(", ")
-      }
     }
   }
 }
