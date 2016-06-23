@@ -224,8 +224,6 @@ ${definitionDescription}
     }
     requiredDef = requiredDef == null ? [] : requiredDef
 
-    print(definitionName); print(": "); println(requiredDef)
-
     if (props != null && !props.isEmpty()) {
       writer.println """
 [cols="15,^10,35,^15,^10,^15", options="header"]
@@ -248,7 +246,11 @@ ${definitionDescription}
             }
             break;
           default:
-            type = property.value.type
+            if (property.value['$ref']) {
+              type = "<<${property.value['$ref'].substring("#/definitions/".length())}>>"
+            } else {
+              type = property.value.type
+            }
         }
         def format = property.value.format ?: '-'
         def allowableValues = allowableValues(property.value.enum)
